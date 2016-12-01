@@ -40,7 +40,6 @@ module Network.TLS.Extra.Cipher
     , cipher_ECDHE_RSA_AES128CBC_SHA
     , cipher_ECDHE_RSA_AES256CBC_SHA
     , cipher_ECDHE_RSA_AES256CBC_SHA384
-    , cipher_ECDHE_ECDSA_AES128GCM_SHA256
     ) where
 
 import qualified Data.ByteString as B
@@ -141,7 +140,6 @@ ciphersuite_all :: [Cipher]
 ciphersuite_all =
     [ cipher_ECDHE_RSA_AES128GCM_SHA256
     , cipher_ECDHE_RSA_AES256CBC_SHA
-    , cipher_ECDHE_ECDSA_AES128GCM_SHA256
     , cipher_DHE_RSA_AES256_SHA256, cipher_DHE_RSA_AES128_SHA256
     , cipher_DHE_RSA_AES256_SHA1, cipher_DHE_RSA_AES128_SHA1
     , cipher_DHE_DSS_AES256_SHA1, cipher_DHE_DSS_AES128_SHA1
@@ -161,7 +159,6 @@ ciphersuite_strong :: [Cipher]
 ciphersuite_strong =
     [ cipher_ECDHE_RSA_AES128GCM_SHA256
     , cipher_ECDHE_RSA_AES256CBC_SHA
-    , cipher_ECDHE_ECDSA_AES128GCM_SHA256
     , cipher_DHE_RSA_AES256_SHA256
     , cipher_AES256_SHA256
     , cipher_AES256_SHA1
@@ -461,16 +458,6 @@ cipher_ECDHE_RSA_AES256CBC_SHA384 = Cipher
     , cipherHash         = SHA384
     , cipherKeyExchange  = CipherKeyExchange_ECDHE_RSA
     , cipherMinVer       = Just TLS12 -- RFC 5288 Sec 4
-    }
-
-cipher_ECDHE_ECDSA_AES128GCM_SHA256 :: Cipher
-cipher_ECDHE_ECDSA_AES128GCM_SHA256 = Cipher
-    { cipherID           = 0xc02b
-    , cipherName         = "ECDHE-ECDSA-AES128GCM-SHA256"
-    , cipherBulk         = bulk_aes128gcm
-    , cipherHash         = SHA256
-    , cipherKeyExchange  = CipherKeyExchange_ECDHE_ECDSA
-    , cipherMinVer       = Just TLS12 -- RFC 5289
     }
 
 cipher_ECDHE_RSA_AES128GCM_SHA256 :: Cipher
